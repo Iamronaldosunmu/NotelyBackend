@@ -1,0 +1,4 @@
+{
+    "connectionString": "mongodb://localhost/Notely", 
+    "port": 4000
+}
