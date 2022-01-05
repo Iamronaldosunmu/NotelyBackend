@@ -12,6 +12,9 @@ const port = process.env.PORT || config.get('port');
 app.use(cors());
 app.use(express.json());
 app.use('/api/v1/users', users);
-app.use('api/v1/login', login);
+app.use('/api/v1/login', login);
+
+if (!config.get("jwtPrivateKey")) throw new Error("No secret key provided");
+
 
 connect(app, port, connectionString);

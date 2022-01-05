@@ -19,7 +19,7 @@ const createNewUser =  async (req, res) => {
         const user = new User({firstName, email, password});
         result = await user.save();
         const {firstName: name, email: mail, _id: id} = result;
-        res.json({ _id: id, firstName: name, email: mail});
+        res.status(200).json({ _id: id, firstName: name, email: mail});
     }catch(error){
         res.send(error)
     }
