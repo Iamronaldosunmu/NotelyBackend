@@ -25,7 +25,7 @@ const createNewUser =  async (req, res) => {
         const token = jwt.sign({_id: id, firstName: name}, config.get("jwtPrivateKey"))
         res.status(200).send(token);
     }catch(error){
-        res.send(error)
+        res.send(error);
     }
 
 } 
