@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const createNewNote = async (req, res) => {
     // Check if the user id that is passed is a valid mongoose object id
     const userId = req.params.userId;
-    if (!mongoose.Types.ObjectId.isValid(userId)) return res.status(400).send("Your item is not a valid object id");
+    if (!mongoose.Types.ObjectId.isValid(userId)) return res.status(400).send("The userId is not a valid mongoose object id");
     // If the user id is a valid mongoose object id, check if it exists in the users database
     const user = await User.findOne({_id: userId});
     if (!user) return res.status(404).send('User not found');
@@ -16,6 +16,19 @@ const createNewNote = async (req, res) => {
         const result = await note.save()
         return res.json(result);
     }
+}
+const deleteNote = async (req, res) => {
+    // Check if the note _id that is passed is a valid mongoose object id
+    const noteId = req.params.noteId;
+    if (!mongoose.Types.ObjectId.isValid(noteId)) return res.status(400).send("The noteId is not a valid mongoose object id");
+    // If the note id is a valid mongoose object id, check if it exists in the note database
+    let note = await Note.findOne({_id: noteId});
+    if (!note) return res.status(404).send("There is no note with that id in the db");
+
+    note = await Note.deleteOne({_id: noteId})
+    res.status(204).json(note);
+
+
 }
 const getAllNotes = async (req, res) => {
     // Check if the user id that is passed is a valid mongoose object id
@@ -45,6 +58,24 @@ const getNote = async (req, res) => {
     else return res.status(201).json(note);
 }
 
+const editNote = async (req, res) => {
+    // Check if the user id that is passed is a valid mongoose object id
+    const userId = req.params.userId;
+    const noteId = req.params.noteId;
+    if (!mongoose.Types.ObjectId.isValid(userId)) return res.status(400).send("Your item is not a valid object id");
+    if (!mongoose.Types.ObjectId.isValid(noteId)) return res.status(400).send("Your item is not a valid object id");
+
+    // If the user id is a valid mongoose object id, check if it exists in the users database
+    const note = await Note.findOne({userId, _id: noteId});
+    if (!note) return res.status(404).send("There is no note with the userId and noteId match");
+    note.title = req.body.title;
+    note.noteContent = req.body.noteContent;
+    note.dateCreated = req.body.dateCreated;
+    note.selectedColor = req.body.selectedColor;
+    const result = await note.save();
+    return res.status(201).json(result);  
+}
+
 module.exports = {
-    createNewNote, getAllNotes, getNote
+    createNewNote, getAllNotes, getNote, deleteNote, editNote
 };
