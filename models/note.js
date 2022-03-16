@@ -22,6 +22,16 @@ const noteSchema = mongoose.Schema({
         type: String,
         trim: true,
         required: true
+    }, 
+    imageUrl: {
+        type: String, 
+        trim: true,
+        required: false
+    }, 
+    imageCloudinaryId : {
+        type: String, 
+        trim: true, 
+        required: false
     }    
 });
 
