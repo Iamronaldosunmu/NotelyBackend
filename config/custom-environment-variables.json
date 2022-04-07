@@ -1,3 +1,6 @@
 {
-    "jwtPrivateKey": "NotelyJwtPrivateKey"
+    "jwtPrivateKey": "NotelyJwtPrivateKey", 
+    "CLOUDINARY_CLOUD_NAME": "Notely_CLOUDINARY_CLOUD_NAME", 
+    "CLOUDINARY_API_KEY": "Notely_CLOUDINARY_API_KEY", 
+    "CLOUDINARY_API_SECRET": "Notely_CLOUDINARY_API_SECRET"
 }

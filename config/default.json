@@ -1,7 +1,4 @@
 {
     "connectionString": "mongodb://localhost/Notely", 
-    "port": 4000, 
-    "CLOUDINARY_CLOUD_NAME":"ronaldosunmu", 
-    "CLOUDINARY_API_KEY":"166271774576157", 
-    "CLOUDINARY_API_SECRET":"Bt3NtLmVpdW5f-NQt4gjvU4F5Z0"
+    "port": 4000
 }
