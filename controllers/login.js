@@ -14,8 +14,7 @@ const authenticate =  async (req, res) => {
     if (!isCorrectPassword) return res.status(400).json({msg: "Invalid username or password."});
 
     // If the password is valid, send a json web token to the client
-    // TODO: Private key is Movenpick123 for now, don't forget to delete it before pushing code to github repo
-    const token = jwt.sign({_id: user._id, firstName: user.firstName}, config.get("jwtPrivateKey")) 
+    const token = jwt.sign({_id: user._id, firstName: user.firstName, avatarUrl: user.avatarUrl ? user.avatarUrl : ''}, config.get("jwtPrivateKey")) 
     res.status(200).send(token);
 }
 

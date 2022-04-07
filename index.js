@@ -1,24 +1,21 @@
+require('express-async-errors');
 const express = require('express');
-const cors = require('cors');
 const app = express();
+require('./startup/routes')(app);
+require('./startup/prod')(app);
 const config = require('config');
 const connect = require('./db/connect');
-const users = require('./routes/users');
-const login = require('./routes/login');
-const notes = require('./routes/note'); 
-const images = require('./routes/image'); 
 
 const connectionString = config.get('connectionString');
 const port = process.env.PORT || config.get('port');
 
-app.use(cors());
-app.use(express.json());
-app.use('/api/v1/users', users);
-app.use('/api/v1/login', login);
-app.use('/api/v1/notes', notes);
-app.use('/api/v1/image', images)
-
 if (!config.get("jwtPrivateKey")) throw new Error("No secret key provided");
-
-
 connect(app, port, connectionString);
+
+process.on('uncaughtException', (ex) => {
+    console.log(ex);
+});
+process.on('unhandledRejection', (ex) => {
+    console.log(ex);
+})
+// "mongodb+srv://RonaldDosunmu:Movenpick123@notely.40thv.mongodb.net/Notely?retryWrites=true&w=majority" --Connection String

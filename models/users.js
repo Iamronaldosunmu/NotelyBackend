@@ -20,6 +20,16 @@ const userSchema = mongoose.Schema({
         type: String, 
         minlength: 3, 
         required: true
+    }, 
+    avatarUrl: {
+        type: String, 
+        required: false, 
+        default: ''
+    }, 
+    avatarCloudinaryId: {
+        type: String, 
+        required: false, 
+        default: ''
     }
 })
 
