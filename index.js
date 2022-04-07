@@ -18,4 +18,3 @@ process.on('uncaughtException', (ex) => {
 process.on('unhandledRejection', (ex) => {
     console.log(ex);
 })
-// "mongodb+srv://RonaldDosunmu:Movenpick123@notely.40thv.mongodb.net/Notely?retryWrites=true&w=majority" --Connection String
